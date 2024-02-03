@@ -12,7 +12,7 @@ import streamlit as st
 from PIL import Image
 import matplotlib.pyplot as plt
 
-arr = ['metal', 'glass', 'paper', 'trash', 'cardboard', 'plastic']
+arr = ['cardboard', 'glass', 'metal', 'paper', 'plastic', 'trash']
 
 def accuracy(outputs, labels):
     _, preds = torch.max(outputs, dim=1)
