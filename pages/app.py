@@ -95,6 +95,7 @@ def main():
     try:
         # Attempt to load the PyTorch model
         model_loaded = torch.load(PATH, map_location=torch.device('cpu'))
+        model_loaded = to_device(model_loaded, device)
         st.success("PyTorch model loaded successfully!")
 
         if uploaded_file is not None:
