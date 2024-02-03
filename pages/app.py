@@ -53,6 +53,31 @@ class ResNet(ImageClassificationBase):
     def forward(self, xb):
         return torch.sigmoid(self.network(xb))
 
+def get_default_device():
+    """Pick GPU if available, else CPU"""
+    if torch.cuda.is_available():
+        return torch.device('cuda')
+    else:
+        return torch.device('cpu')
+    
+def to_device(data, device):
+    """Move tensor(s) to chosen device"""
+    if isinstance(data, (list,tuple)):
+        return [to_device(x, device) for x in data]
+    return data.to(device, non_blocking=True)
+
+device = get_default_device()
+
+def predict_image(img, model):
+    # Convert to a batch of 1
+    xb = to_device(img.unsqueeze(0), device)
+    # Get predictions from model
+    yb = model(xb)
+    # Pick index with highest probability
+    prob, preds  = torch.max(yb, dim=1)
+    # Retrieve the class label
+    return dataset.classes[preds[0].item()]
+
 def main():
     st.title("Image Upload and Display App")
 
@@ -64,15 +89,18 @@ def main():
         # Attempt to load the PyTorch model
         model_loaded = torch.load(PATH, map_location=torch.device('cpu'))
         st.success("PyTorch model loaded successfully!")
+
+        if uploaded_file is not None:
+            # Display the uploaded image
+            image = Image.open(uploaded_file)
+            st.image(image, caption="Uploaded Image.", use_column_width=True)
+            text = predict_image(img, model_loaded)
+            st.text(text)
+                
     except FileNotFoundError:
         st.error(f"Error: Model file not found at path: {PATH}")
     except Exception as e:
         st.error(f"Error: {e}")
-
-    if uploaded_file is not None:
-        # Display the uploaded image
-        image = Image.open(uploaded_file)
-        st.image(image, caption="Uploaded Image.", use_column_width=True)
 
 if __name__ == "__main__":
     main()
