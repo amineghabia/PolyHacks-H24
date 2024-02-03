@@ -60,7 +60,14 @@ def main():
     uploaded_file = st.file_uploader("Choose an image...", type="jpg")
 
     PATH = "model/entire_model.pt"
-    model_loaded = torch.load(PATH, map_location=torch.device('cpu'))
+    try:
+        # Attempt to load the PyTorch model
+        model_loaded = torch.load(PATH, map_location=torch.device('cpu'))
+        st.success("PyTorch model loaded successfully!")
+    except FileNotFoundError:
+        st.error(f"Error: Model file not found at path: {PATH}")
+    except Exception as e:
+        st.error(f"Error: {e}")
 
     if uploaded_file is not None:
         # Display the uploaded image
