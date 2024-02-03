@@ -16,6 +16,9 @@ def main():
     # Upload image through Streamlit
     uploaded_file = st.file_uploader("Choose an image...", type="jpg")
 
+    PATH = "../model/entire_model.pt"
+    model_loaded = torch.load(PATH)
+
     if uploaded_file is not None:
         # Display the uploaded image
         image = Image.open(uploaded_file)
