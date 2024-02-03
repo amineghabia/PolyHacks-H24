@@ -94,7 +94,7 @@ def main():
             # Display the uploaded image
             image = Image.open(uploaded_file)
             st.image(image, caption="Uploaded Image.", use_column_width=True)
-            text = predict_image(img, model_loaded)
+            text = predict_image(image, model_loaded)
             st.text(text)
                 
     except FileNotFoundError:
