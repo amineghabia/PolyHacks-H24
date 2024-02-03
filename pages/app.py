@@ -60,7 +60,7 @@ def main():
     uploaded_file = st.file_uploader("Choose an image...", type="jpg")
 
     PATH = "model/entire_model.pt"
-    model_loaded = torch.load(PATH)
+    model_loaded = torch.load(PATH, map_location=torch.device('cpu'))
 
     if uploaded_file is not None:
         # Display the uploaded image
