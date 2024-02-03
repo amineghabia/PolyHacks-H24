@@ -12,6 +12,8 @@ import streamlit as st
 from PIL import Image
 import matplotlib.pyplot as plt
 
+arr = ['metal', 'glass', 'paper', 'trash', 'cardboard', 'plastic']
+
 def accuracy(outputs, labels):
     _, preds = torch.max(outputs, dim=1)
     return torch.tensor(torch.sum(preds == labels).item() / len(preds))
@@ -76,7 +78,7 @@ def predict_image(img, model):
     # Pick index with highest probability
     prob, preds  = torch.max(yb, dim=1)
     # Retrieve the class label
-    return dataset.classes[preds[0].item()]
+    return arr[preds[0].item()]
 
 def main():
     transformations = transforms.Compose([
