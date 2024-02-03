@@ -79,6 +79,11 @@ def predict_image(img, model):
     return dataset.classes[preds[0].item()]
 
 def main():
+    transformations = transforms.Compose([
+        transforms.Resize((256, 256)),
+        transforms.ToTensor()
+    ])
+    
     st.title("Image Upload and Display App")
 
     # Upload image through Streamlit
@@ -93,8 +98,9 @@ def main():
         if uploaded_file is not None:
             # Display the uploaded image
             image = Image.open(uploaded_file)
+            img = transformations(image)
             st.image(image, caption="Uploaded Image.", use_column_width=True)
-            text = predict_image(image, model_loaded)
+            text = predict_image(img, model_loaded)
             st.text(text)
                 
     except FileNotFoundError:
