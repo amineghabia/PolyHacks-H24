@@ -105,6 +105,34 @@ def main():
             st.image(image, caption="Uploaded Image.", use_column_width=True)
             text = predict_image(img, model_loaded)
             st.text(text)
+
+            if text = 'cardboard':
+                markdown_content = """
+                ## How to Recycle Cardboard
+            
+                Cardboard recycling is an essential step towards reducing waste and promoting sustainability. Here are some simple steps to recycle cardboard:
+            
+                1. **Flatten the Cardboard:**
+                    Flatten and fold the cardboard boxes before placing them in the recycling bin. This helps save space and makes it easier for recycling facilities to process.
+            
+                2. **Remove Contaminants:**
+                    Ensure that the cardboard is free from contaminants such as food residues, tape, and labels. Clean cardboard is more valuable in the recycling process.
+            
+                3. **Check Local Guidelines:**
+                    Check your local recycling guidelines to understand specific requirements and collection schedules for cardboard recycling in your area.
+            
+                4. **Separate from Other Materials:**
+                    Separate cardboard from other materials like plastics or metals. This makes the recycling process more efficient.
+            
+                5. **Reuse if Possible:**
+                    Before recycling, consider whether the cardboard can be reused. Reusing boxes for storage or shipping is an eco-friendly option.
+            
+                Remember, proper cardboard recycling contributes to a healthier environment and conserves valuable resources.
+            
+                *Recycle responsibly and make a positive impact on the planet!*
+                """
+            
+                st.markdown(markdown_content)
                 
     except FileNotFoundError:
         st.error(f"Error: Model file not found at path: {PATH}")
