@@ -130,7 +130,7 @@ def main():
 
             collection.update_one(
                 {'categorie': text},
-                {'$inc': {'count': count}},
+                {'$inc': {'count'}},
                 upsert=True
             )
                 
