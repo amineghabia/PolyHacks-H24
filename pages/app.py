@@ -150,7 +150,7 @@ def main():
 
             fig, ax = plt.subplots()
             ax.pie(counts, labels=categories, autopct='%1.1f%%', startangle=90)
-            fig.title('Proportion of scanned waste categories')
+            ax.set_title('Proportion of scanned waste categories')
             
             st.pyplot(fig)
                 
