@@ -12,10 +12,16 @@ import streamlit as st
 from PIL import Image
 import matplotlib.pyplot as plt
 
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
+
 from pages.myconfig import *
-from pages.mongoDB import *
 
 arr = ['cardboard', 'glass', 'metal', 'paper', 'plastic', 'trash']
+
+uri = "mongodb+srv://jadrabhi:5AFOr0GCVREThK64@hackathon.upngmgt.mongodb.net/?retryWrites=true&w=majority"
+
+client = MongoClient(uri, server_api=ServerApi('1'))
 
 def accuracy(outputs, labels):
     _, preds = torch.max(outputs, dim=1)
@@ -91,10 +97,12 @@ def main():
     
     st.title("Image Upload and Display App")
 
-    if connect:
+    try:
+        client.admin.command('ping')
+        print("Pinged your deployment. You successfully connected to MongoDB!")
         st.text("connect")
-    else:
-        st.text("disconnect")
+    except Exception as e:
+        st.text(e)
 
     # Upload image through Streamlit
     uploaded_file = st.file_uploader("Choose an image...", type="jpg")
