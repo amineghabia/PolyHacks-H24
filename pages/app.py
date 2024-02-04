@@ -12,8 +12,6 @@ import streamlit as st
 from PIL import Image
 import matplotlib.pyplot as plt
 
-import const  
-
 arr = ['cardboard', 'glass', 'metal', 'paper', 'plastic', 'trash']
 
 def accuracy(outputs, labels):
