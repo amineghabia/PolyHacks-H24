@@ -29,3 +29,22 @@ Explore the initial development and analysis in the Jupyter Notebook available h
 To run the Streamlit app, follow this link:
 
 [https://streamlit.app](https://polyhacks-h24-kwgzsfgnkjepfnt9kqvaty.streamlit.app/~/+/app)
+
+### Installation
+
+1. Clone this repository:
+
+   ```bash
+   git clone https://github.com/amineghabia/PolyHacks-H24.git
+   cd PolyHacks-H24
+   ```
+2. Install dependencies:
+
+    ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Run:
+    ```bash
+   streamlit run streamlit_app.py
+   ```
