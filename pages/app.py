@@ -106,7 +106,7 @@ def main():
             text = predict_image(img, model_loaded)
             st.text(text)
 
-            if text = 'cardboard':
+            if text == 'cardboard':
                 markdown_content = """
                 ## How to Recycle Cardboard
             
