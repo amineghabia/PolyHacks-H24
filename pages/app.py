@@ -23,6 +23,10 @@ uri = "mongodb+srv://jadrabhi:5AFOr0GCVREThK64@hackathon.upngmgt.mongodb.net/?re
 
 client = MongoClient(uri, server_api=ServerApi('1'))
 
+db = client['Hackathon']
+
+collection = db['types']
+
 def accuracy(outputs, labels):
     _, preds = torch.max(outputs, dim=1)
     return torch.tensor(torch.sum(preds == labels).item() / len(preds))
@@ -100,7 +104,7 @@ def main():
     try:
         client.admin.command('ping')
         print("Pinged your deployment. You successfully connected to MongoDB!")
-        st.text("connect")
+        st.text("connect MongoDB")
     except Exception as e:
         st.text(e)
 
@@ -123,6 +127,12 @@ def main():
             st.text(text)
             
             st.markdown(dict_markdown[text])
+
+            collection.update_one(
+                {'categorie': text},
+                {'$inc': {'count': count}},
+                upsert=True
+            )
                 
     except FileNotFoundError:
         st.error(f"Error: Model file not found at path: {PATH}")
