@@ -12,7 +12,7 @@ import streamlit as st
 from PIL import Image
 import matplotlib.pyplot as plt
 
-from const import *  
+import const  
 
 arr = ['cardboard', 'glass', 'metal', 'paper', 'plastic', 'trash']
 
