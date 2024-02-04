@@ -1,0 +1,10 @@
+from pymongo import MongoClient
+
+uri = "mongodb+srv://jadrabhi:5AFOr0GCVREThK64@hackathon.upngmgt.mongodb.net/?retryWrites=true&w=majority"
+
+client = MongoClient(uri, server_api=ServerApi('1'))
+
+db = client['hackathon']
+
+comptages_collection = db['comptages']
+
