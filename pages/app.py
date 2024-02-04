@@ -93,6 +93,8 @@ def main():
 
     if connect:
         st.text("connect")
+    else:
+        st.text("disconnect")
 
     # Upload image through Streamlit
     uploaded_file = st.file_uploader("Choose an image...", type="jpg")
