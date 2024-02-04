@@ -27,6 +27,16 @@ db = client['Hackathon']
 
 collection = db['types']
 
+def get_all_documents(category_collection):
+    cursor = category_collection.find()
+    all_documents = []
+    for document in cursor:
+        all_documents.append(document)
+
+    return all_documents
+
+data = get_all_documents(collection)
+
 def accuracy(outputs, labels):
     _, preds = torch.max(outputs, dim=1)
     return torch.tensor(torch.sum(preds == labels).item() / len(preds))
@@ -133,6 +143,15 @@ def main():
                 {'$inc': {'count': 1}},
                 upsert=True
             )
+
+            data = get_all_documents(collection)
+            categories = [entry['categorie'] for entry in data]
+            counts = [entry['count'] for entry in data]
+
+            fig, ax = plt.subplots()
+            ax.pie(counts, labels=categories, autopct='%1.1f%%', startangle=90)
+            
+            st.pyplot(fig)
                 
     except FileNotFoundError:
         st.error(f"Error: Model file not found at path: {PATH}")
