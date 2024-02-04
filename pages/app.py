@@ -13,6 +13,7 @@ from PIL import Image
 import matplotlib.pyplot as plt
 
 from pages.myconfig import *
+from pages.mongoDB import *
 
 arr = ['cardboard', 'glass', 'metal', 'paper', 'plastic', 'trash']
 
@@ -89,6 +90,9 @@ def main():
     ])
     
     st.title("Image Upload and Display App")
+
+    if connect:
+        st.text("connect")
 
     # Upload image through Streamlit
     uploaded_file = st.file_uploader("Choose an image...", type="jpg")
