@@ -109,12 +109,12 @@ def main():
         transforms.ToTensor()
     ])
     
-    st.title("Image Upload and Display App")
+    st.title("EcoSort")
 
     try:
         client.admin.command('ping')
         print("Pinged your deployment. You successfully connected to MongoDB!")
-        st.text("connect MongoDB")
+        st.text("connected to MongoDB")
     except Exception as e:
         st.text(e)
 
@@ -147,7 +147,7 @@ def main():
             data = get_all_documents(collection)
             categories = [entry['categorie'] for entry in data]
             counts = [entry['count'] for entry in data]
-
+            st.text("")
             fig, ax = plt.subplots()
             ax.pie(counts, labels=categories, autopct='%1.1f%%', startangle=90)
             ax.set_title('Proportion of scanned waste categories')
