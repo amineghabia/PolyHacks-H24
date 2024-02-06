@@ -1,5 +1,7 @@
 # PolyHacks-H24
 
+![metal](metal.PNG)
+
 # EcoSort - Waste Sorting Assistant
 
 Welcome to EcoSort Guide, a waste sorting assistant application developed for the PolyHacks 2024 Hackathon. This project aims to help users efficiently sort their waste by providing real-time guidance on how to properly dispose of various items.
