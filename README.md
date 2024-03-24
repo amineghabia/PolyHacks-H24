@@ -30,7 +30,7 @@ Explore the initial development and analysis in the Jupyter Notebook available h
 ## Streamlit App
 To run the Streamlit app, follow this link:
 
-[https://streamlit.app](https://polyhacks-h24-kwgzsfgnkjepfnt9kqvaty.streamlit.app/~/+/app)
+[https://streamlit.app](https://polyhacks-h24-kwgzsfgnkjepfnt9kqvaty.streamlit.app/)
 
 ### Installation
 
